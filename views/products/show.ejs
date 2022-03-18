@@ -1,0 +1,18 @@
+<%- include('header')  %>
+    <title><%= product.name %> </title>
+</head>
+<body>
+    <%- include('navbar')  %>
+    <h1><%= product.name %> </h1>
+    <ul>
+        <li>Price: ₩<%= product.price %> </li>
+        <li>Category: <%= product.category %> </li>
+    </ul>
+    <a href="/products" class="btn-link">All products</a>
+    <a href="/products/<%= product._id %>/edit" class="btn-link">Edit</a>
+    <br>
+    <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+</body>
+</html>

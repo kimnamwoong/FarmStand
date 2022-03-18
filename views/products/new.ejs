@@ -1,0 +1,33 @@
+<%- include('header')  %>
+    <title>New Product</title>
+</head>
+
+<body>
+    <%- include('navbar')  %>
+
+    <h1>ADD New Product</h1>
+    <form class="row-g-3" action="/products" method="POST">
+        <div class="col col-md-6">
+            <label for="name">Product Name</label>
+            <input id="name" type="text" class="form-control" name="name" placeholder="product name">    
+        </div>
+        <div class="col col-md-6">
+            <label for="price">Product Price</label>
+            <input id="price" type="number" class="form-control" name="price" placeholder="product price">
+        </div>
+        <div class="col col-md-6">
+            <label for="category">category</label>
+        </div>
+        <div class="col col-md-6">
+            <select name="category" id="category" class="form-select form-select-lg mb-3 form-select-sm">
+                <% for(let category of categories) { %>
+                    <option value="<%= category %>"><%= category %></option>
+                <% } %> 
+            </select>
+        </div>
+        <button>Submit</button>
+    </form>
+
+</body>
+
+</html>
