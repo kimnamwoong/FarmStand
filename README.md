@@ -5,6 +5,7 @@
   <li>Mark Up Styling: Bootstrap V5</li>
   <li>Database: MongoDB V5.0.6</li>
   <li>Editor: VS Code </li>
+  <li>주요기능: CRUD</li>
 </ul>
 
 <h2>화면 구성</h2>
