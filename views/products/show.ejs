@@ -1,18 +1,26 @@
-<%- include('header')  %>
-    <title><%= product.name %> </title>
-</head>
-<body>
-    <%- include('navbar')  %>
-    <h1><%= product.name %> </h1>
-    <ul>
-        <li>Price: ₩<%= product.price %> </li>
-        <li>Category: <%= product.category %> </li>
-    </ul>
-    <a href="/products" class="btn-link">All products</a>
-    <a href="/products/<%= product._id %>/edit" class="btn-link">Edit</a>
-    <br>
-    <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
-        <button>Delete</button>
-    </form>
-</body>
-</html>
+<% layout('./layout/boilerplate') -%>
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card text-center mb-3">
+                <div class="card-title">
+                    <h5 class="card-title">
+                        <%= product.name %>
+                    </h5>
+                </div>
+                <img src="<%= product.img %>" class="card-img-top" alt="">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Price: ₩<%= product.price %></li>
+                </ul>
+                <div class="card-body">
+                    <a class="card-link btn btn-success" href="/products/<%= product._id %>/edit">Edit</a>
+                    <form class="d-inline" action="/products/<%= product._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <a href="/products">Back All products</a>
+                </div>
+            </div>
+        </div>
+    </div>

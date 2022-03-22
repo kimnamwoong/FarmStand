@@ -5,6 +5,7 @@ const productSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    img:String,
     price:{
         type:Number,
         required:true,
@@ -14,6 +15,11 @@ const productSchema = new mongoose.Schema({
         type:String,
         lowercase:true,
         enum:['fruit','vegetable','dairy']
+    },
+    qty:{
+        type:Number,
+        required:true,
+        min:0
     }
 })
 

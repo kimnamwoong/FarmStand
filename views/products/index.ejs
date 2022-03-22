@@ -1,29 +1,25 @@
-<%- include('header')  %>
-    <title>Products</title>
-</head>
-<body>
-    <%- include('navbar')  %>
+<% layout('./layout/boilerplate') -%>
     <h1>ALL Products</h1>
     <div class="table-responsive-md">
         <table class="table table align-middle table-hover">
             <thead>
                 <tr>
-                <th scope="col">No</th>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
+                    <th scope="col">No</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
                 </tr>
             </thead>
             <tbody>
-                <% for(let product of products) { %> 
-                <tr>
-                    <th scope="row"> ◼ </th>
-                    <td><a href="/products/<%= product._id %>"><%= product.name %></a></td>
-                    <td><%= product.price %></td>
-                </tr>
-                <% } %>
+                <% for(let i=0; i<productsCount;i++) { %>
+                    <tr>
+                        <th scope="row"><%= i+1 %> </th>
+                        <td><a href="/products/<%= products[i]._id %>"><%= products[i].name %></a></td>
+                        <td><%= products[i].price %></td>
+                        <td><%= products[i].qty %> </td>
+                    </tr>
+                    <% } %>
             </tbody>
         </table>
     </div>
-    <a href="/products/new" class="btn-link">Add product</a>
-</body>
-</html>
+    <a href="/products/new" class="btn btn-primary">Add product</a>
