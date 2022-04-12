@@ -22,16 +22,27 @@
 ![image](https://user-images.githubusercontent.com/94125986/159404712-78a67fb5-b59e-4c71-a23b-9edf72890b77.png)
 
 
-<h3>품목 상세 조회</h3>
+#### 품목 상세 조회
 
 ![image](https://user-images.githubusercontent.com/94125986/159404832-be8839c4-bfa3-4fe7-9091-9ba31c8fb119.png)
 
 
-<h3>품목 추가</h3>
+#### 품목 추가
 
 ![image](https://user-images.githubusercontent.com/94125986/159404806-0e364e6e-77fa-4624-992c-b23cbccc7684.png)
 
 
-<h3>품목 수정</h3>
+#### 품목 수정
 
 ![image](https://user-images.githubusercontent.com/94125986/159404888-b36ff27d-c1b6-4d90-8403-6f88672b4ff0.png)
+
+#### + 추가 2022 04 12 
+
+#### 로그인 기능 
+  
+![image](https://user-images.githubusercontent.com/94125986/162922100-2af2977f-e633-4620-8b46-dcc9ecc881f3.png)
+  
+
+#### 회원가입 기능 
+  
+![image](https://user-images.githubusercontent.com/94125986/162922155-188bfa35-4f06-47d9-a086-e5b2c41de530.png)
