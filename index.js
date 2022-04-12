@@ -4,9 +4,16 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate');
+const session = require('express-session');
+
+const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+
 const AppError = require('./AppError');
 
 const Product = require('./models/product');
+const User = require('./models/users');
 
 mongoose.connect('mongodb://localhost:27017/farmStand')
     .then( () => {
@@ -23,7 +30,29 @@ app.set('view engine','ejs');
 app.engine('ejs',ejsMate);
 
 app.use(express.urlencoded({ extended:true }));
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname,'public')));
+
+const sess = {
+    secret: 'thisismysecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie:{
+        httpOnly:true,
+        // 유효기간 - 7days
+        expires:Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge:1000 * 60 * 60 * 24 * 7
+    }
+}
+// session 추가
+app.use(session(sess));
+
+// passport 사용을 위한 초기설정 - local strategy 사용할 예정
+passport.use(new LocalStrategy(User.authenticate()));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 const categories = ['fruit','vegetable','dairy'];
 
@@ -83,6 +112,36 @@ app.delete('/products/:id',wrapAsync(async(req,res) => {
     const deleted_product = await Product.findByIdAndDelete(id);
     res.redirect('/products')
 }))
+
+app.get('/register',async (req,res)=>{
+
+    res.render('users/register')
+})
+
+app.post('/register',async(req,res)=>{
+    try {
+        const { email, username, password } = req.body;
+        const user = new User({ email, username });
+        console.log(user);
+        const registerUser = await User.register(user, password);
+        res.redirect('/products');
+    } catch (e) {
+        res.redirect('/register');
+    } 
+})
+
+// 로그인 폼 rendering
+app.get('/login',async (req,res)=>{
+
+    res.render('users/login')
+})
+
+// login form submit, 일치여부확인 
+app.post('/login',passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }), (req,res)=>{
+
+    res.redirect('/products');
+})
+
 
 const handleValidationErr = err => {
     console.dir(err);

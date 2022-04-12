@@ -3,14 +3,15 @@
     <div class="row">
         <div class="col-6 offset-3">
             <div class="card text-center mb-3">
+                <img src="<%= product.img %>" class="card-img-top" alt="">
                 <div class="card-title">
                     <h5 class="card-title">
                         <%= product.name %>
                     </h5>
                 </div>
-                <img src="<%= product.img %>" class="card-img-top" alt="">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Price: ₩<%= product.price %></li>
+                    <li class="list-group-item">Quantity: <%= product.qty %></li>
                 </ul>
                 <div class="card-body">
                     <a class="card-link btn btn-success" href="/products/<%= product._id %>/edit">Edit</a>
